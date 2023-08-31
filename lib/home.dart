@@ -4,16 +4,16 @@ import 'package:fluttertestview/view/rcard.dart';
 import 'model.dart';
 part './view/rview.dart';
 
-class Test extends StatefulWidget {
-  const Test({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<Test> createState() => _TestState();
+  State<Home> createState() => _HomeState();
 }
 
 enum _TabItems { home, filters, favorite, shop }
 
-class _TestState extends State<Test> {
+class _HomeState extends State<Home> {
   final List<RentModel> _rentItems = List.generate(20, (index) {
     return RentModel(
         title: 'Title $index',
