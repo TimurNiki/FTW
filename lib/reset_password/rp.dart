@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertestview/reset_password/reset_validator.dart';
+import 'package:fluttertestview/reset_password/rp_mixin.dart';
 import 'package:fluttertestview/reset_password/visible_eye.dart';
-
+part "rpw.dart";
 class ResetPasswordView extends StatefulWidget {
   const ResetPasswordView({super.key});
 
@@ -9,7 +11,9 @@ class ResetPasswordView extends StatefulWidget {
   State<ResetPasswordView> createState() => _ResetPasswordViewState();
 }
 
-class _ResetPasswordViewState extends State<ResetPasswordView> {
+class _ResetPasswordViewState extends State<ResetPasswordView> with RPMixin {
+
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +26,10 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
       ),
       bottomNavigationBar:  Padding(
         padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom)   + const EdgeInsets.symmetric(horizontal: 16),
-        child: const SafeArea(
-          child: _SubmitButton(),
+        child:  SafeArea(
+          child: _SubmitButton(
+            onSubmitPressed
+          ),
         ),
       ),
       body: Padding(
@@ -40,7 +46,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
             padding: EdgeInsets.symmetric(vertical: 20),
             child: Text(_ResetPasswordTitles.subTitle),
           ),
-          const _InputField(),
+           _InputField(controller),
         ]),
       ),
     );
@@ -48,12 +54,14 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
 }
 
 class _SubmitButton extends StatelessWidget {
-  const _SubmitButton();
-
+  const _SubmitButton(this.onPressed);
+  final VoidCallback? onPressed;
+  
+static const double _buttonHeight = 56;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 56,
+      height: _buttonHeight,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(backgroundColor: Colors.purple[700]),
           onPressed: () {},
@@ -62,51 +70,3 @@ class _SubmitButton extends StatelessWidget {
   }
 }
 
-class _InputField extends StatefulWidget {
-  const _InputField();
-
-  @override
-  State<_InputField> createState() => _InputFieldState();
-}
-
-class _InputFieldState extends State<_InputField> {
-   bool _isSecured =false;
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      obscureText: _isSecured,
-      decoration: InputDecoration(
-        
-          labelText: _ResetPasswordTitles.newPassword,
-          labelStyle: Theme.of(context)
-              .textTheme
-              .bodyLarge
-              ?.copyWith(color: Colors.black),
-          hintText: "Enter Password",
-          contentPadding: const EdgeInsets.only(left: 16),
-          border: _inputBorder(),
-          enabledBorder: _inputBorder(),
-          focusedBorder: _inputBorder(),
-         suffixIcon: VisibleEyeButton(onChanged: (value){
-          setState(() {
-            _isSecured =value;
-          });
-         },)
-         ),
-    );
-  }
-
-  OutlineInputBorder _inputBorder() {
-    return const OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-        borderSide: BorderSide(color: Colors.black));
-  }
-}
-
-final class _ResetPasswordTitles {
-  _ResetPasswordTitles._();
-  static const title = 'Reset your password';
-  static const subTitle = 'Lets reset your password';
-  static const buttonText = 'Submit';
-  static const newPassword = 'New password';
-}
