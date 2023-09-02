@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertestview/reset_password/rp.dart';
+import 'chat_screen/cs.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           // useMaterial3: true,
           ),
-      home: const ResetPasswordView(),
+      home: const ChatScreen(),
     );
   }
 }

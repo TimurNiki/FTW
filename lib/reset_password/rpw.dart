@@ -1,4 +1,5 @@
 part of './rp.dart';
+
 final class _ResetPasswordTitles {
   _ResetPasswordTitles._();
   static const title = 'Reset your password';
@@ -6,27 +7,27 @@ final class _ResetPasswordTitles {
   static const buttonText = 'Submit';
   static const newPassword = 'New password';
 }
+
 class _InputField extends StatefulWidget {
   const _InputField(this.controller);
- final TextEditingController controller;
+  final TextEditingController controller;
   @override
   State<_InputField> createState() => _InputFieldState();
 }
 
 class _InputFieldState extends State<_InputField> {
-   bool _isSecured =false;
-  
+  bool _isSecured = false;
+
   @override
   Widget build(BuildContext context) {
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: TextFormField(
-        validator: (value){
+        validator: (value) {
           return ResetValidator(value).controlandMessage();
         },
         obscureText: _isSecured,
         decoration: InputDecoration(
-          
             labelText: _ResetPasswordTitles.newPassword,
             labelStyle: Theme.of(context)
                 .textTheme
@@ -37,12 +38,13 @@ class _InputFieldState extends State<_InputField> {
             border: _inputBorder(),
             enabledBorder: _inputBorder(),
             focusedBorder: _inputBorder(),
-           suffixIcon: VisibleEyeButton(onChanged: (value){
-            setState(() {
-              _isSecured =value;
-            });
-           },)
-           ),
+            suffixIcon: VisibleEyeButton(
+              onChanged: (value) {
+                setState(() {
+                  _isSecured = value;
+                });
+              },
+            )),
       ),
     );
   }
@@ -53,4 +55,3 @@ class _InputFieldState extends State<_InputField> {
         borderSide: BorderSide(color: Colors.black));
   }
 }
-
