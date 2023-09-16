@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'chat_screen/cs.dart';
 
+import 'onboard/auth_ob.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           // useMaterial3: true,
           ),
-      home: const ChatScreen(),
+      home: const Auth(),
     );
   }
 }

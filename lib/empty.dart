@@ -8,11 +8,12 @@ class EmptyView extends StatefulWidget {
 }
 
 class _EmptyViewState extends State<EmptyView> {
+  static const _text = "Empty Appbar";
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: const Text("data"),
+        title: Center(child: const Text(_text)),
       ),
     );
   }
