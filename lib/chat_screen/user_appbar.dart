@@ -8,35 +8,35 @@ class UserAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
-        backgroundColor: Colors.transparent,
-        leading: Icon(Icons.arrow_back_sharp),
-        elevation: 0,
-        leadingWidth: 15,
-        centerTitle: false,
-        iconTheme: IconThemeData(color: Colors.black),
-        title: Row(
-          children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(user.ppUrl),
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
+      backgroundColor: Colors.transparent,
+      leading: Icon(Icons.arrow_back_sharp),
+      elevation: 0,
+      leadingWidth: 15,
+      centerTitle: false,
+      iconTheme: IconThemeData(color: Colors.black),
+      title: Row(
+        children: [
+          CircleAvatar(
+            backgroundImage: NetworkImage(user.ppUrl),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  user.fullName,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                Text(user.position,
+                    style: Theme.of(context).textTheme.titleSmall),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    user.fullName,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Text(user.position,
-                      style: Theme.of(context).textTheme.titleSmall),
-                ],
-              ),
-            )
-          ],
-        ),
-        );
+          )
+        ],
+      ),
+    );
   }
 
   @override
