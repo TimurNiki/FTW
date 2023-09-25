@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertestview/langapp/custom_decoration.dart';
 
 import 'lang_dropdown.dart';
 
@@ -19,11 +20,26 @@ class _LAViewState extends State<LAView> {
         padding: EdgeInsets.symmetric(horizontal: 16),
         children: [
           _Header(),
+          _WBC(),
+          _TCard(),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical:8.0),
-            child: Text('Welcome Back!',style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontSize: Theme.of(context).textTheme.headlineMedium?.fontSize
-            ),),
+            padding: _PagePadding.verticalNormal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Your Courses",
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold
+                )),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "View all",
+                    style: TextStyle(color:_AppColors.primary),
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),
@@ -31,10 +47,81 @@ class _LAViewState extends State<LAView> {
   }
 }
 
+class _TCard extends StatelessWidget {
+  const _TCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: CustomDecoration(),
+      child: Padding(
+        padding: _PagePadding.allNormal,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Chip(
+                label: Text('Intermediate'),
+                backgroundColor: Colors.white.withOpacity(0.25)),
+            Padding(
+              padding: _PagePadding.verticalLow,
+              child: Text(
+                "Today's Challenge",
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    color: Theme.of(context).colorScheme.surface,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Row(
+              children: [
+                Icon(Icons.currency_bitcoin, color: Colors.yellow),
+                Padding(
+                  padding: _PagePadding.onlyLeft,
+                  child: Text(
+                    "Take this lesson",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.surface,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
+            ),
+            Padding(
+              padding: _PagePadding.verticalNormal,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8))),
+                    backgroundColor: Theme.of(context).colorScheme.surface,
+                    foregroundColor: Colors.green),
+                onPressed: () {},
+                child: Text("Tap to Start"),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _WBC extends StatelessWidget {
+  const _WBC();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: _PagePadding.verticalNormal,
+      child: Text(
+        'Welcome Back!',
+        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            fontSize: Theme.of(context).textTheme.headlineMedium?.fontSize),
+      ),
+    );
+  }
+}
+
 class _Header extends StatelessWidget {
   const _Header();
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +134,13 @@ class _Header extends StatelessWidget {
         style: Theme.of(context).textTheme.titleLarge,
       ),
       subtitle: Padding(
-        padding: const EdgeInsets.only (top:2.0),
+        padding: const EdgeInsets.only(top: 2.0),
         child: Row(
           children: [
-            Icon(Icons.pin_drop_rounded,
-            color: Colors.red,),
+            Icon(
+              Icons.pin_drop_rounded,
+              color: Colors.red,
+            ),
             SizedBox(
               width: 5,
             ),
@@ -80,6 +169,25 @@ class _Appbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+final class _PagePadding {
+  const _PagePadding._();
+  static const onlyLeft = EdgeInsets.only(left: 16);
+
+  static const EdgeInsets allNormal = EdgeInsets.all(16);
+
+  static const EdgeInsets horizontalNormal =
+      EdgeInsets.symmetric(horizontal: 16);
+
+  static const EdgeInsets verticalNormal = EdgeInsets.symmetric(vertical: 16);
+  static const EdgeInsets verticalLow = EdgeInsets.symmetric(vertical: 8);
+}
+
+@immutable
+class _AppColors {
+  const _AppColors._();
+
+  static const Color primary = Colors.green;
 }
