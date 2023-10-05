@@ -1,4 +1,5 @@
 part of '../home_screen.dart';
+
 class _Card extends StatelessWidget {
   const _Card();
 
@@ -10,8 +11,7 @@ class _Card extends StatelessWidget {
         child: Column(
           children: [
             _BottomCard(),
-            Expanded(
-                child: _Image()),
+            Expanded(child: _Image()),
             Row(
               children: [
                 Column(
@@ -20,7 +20,10 @@ class _Card extends StatelessWidget {
                     Text.rich(TextSpan(children: [
                       TextSpan(
                           text: '9.5',
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700) )
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(fontWeight: FontWeight.w700))
                     ]))
                   ],
                 ),
@@ -36,10 +39,6 @@ class _Card extends StatelessWidget {
 }
 
 class _Image extends StatelessWidget {
-  const _Image({
-    super.key,
-  });
-
   @override
   Widget build(BuildContext context) {
     return Image.asset('assets/img/wayne.png');
@@ -47,21 +46,26 @@ class _Image extends StatelessWidget {
 }
 
 class _BottomCard extends StatelessWidget {
-  const _BottomCard({
-    super.key,
-  });
-
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Text('Wayne'),
         Spacer(),
-        Card(  
-          child: IconButton.filled(
-            onPressed: () {},
-            icon:
-                Icon(Icons.favorite, color: Colors.red),
+        ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(backgroundColor: Colors.red[300]),
+          child: const Padding(
+            padding: EdgeInsets.all(8),
+            child: Row(
+              children: [
+                Text("test"),
+                Padding(
+                  padding: EdgeInsets.only(left:8),
+                  child: Icon(Icons.shopping_basket_outlined),
+                ),
+              ],
+            ),
           ),
         )
       ],

@@ -285,8 +285,8 @@ final class _PagePadding {
 
   static const EdgeInsets allNormal = EdgeInsets.all(16);
 
-  static const EdgeInsets horizontalNormal =
-      EdgeInsets.symmetric(horizontal: 16);
+  // static const EdgeInsets horizontalNormal =
+  //     EdgeInsets.symmetric(horizontal: 16);
 
   static const EdgeInsets verticalNormal = EdgeInsets.symmetric(vertical: 16);
   static const EdgeInsets verticalLow = EdgeInsets.symmetric(vertical: 8);

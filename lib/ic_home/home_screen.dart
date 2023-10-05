@@ -20,24 +20,44 @@ class _IcHomeScreenState extends State<IcHomeScreen> {
     return Scaffold(
       appBar: _AppBar(),
       body: ListView(
+        padding: EdgeInsets.zero,
         children: [
-          Text("What's your problem?",
-          style: context.themeOf.textTheme.titleMedium,),
-          TextField(decoration: InputDecoration(
-            hintText: 'Search',
-            suffixIcon: Icon(Icons.search),
-             fillColor: Colors.grey[200],
-              filled: true,
-              border: const OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius:
-                    BorderRadius.all(Radius.circular(16)),
-              ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "What's your problem?",
+                  style: context.themeOf.textTheme.titleMedium,
+                ),
+              ],
+            ),
           ),
-            
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: _SearchField(),
           ),
           _PageBody()
         ],
+      ),
+    );
+  }
+}
+
+class _SearchField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: 'Search',
+        suffixIcon: Icon(Icons.search),
+        fillColor: Colors.grey[200],
+        filled: true,
+        border: const OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
       ),
     );
   }
@@ -69,4 +89,3 @@ class _PageBody extends StatelessWidget {
     );
   }
 }
-
