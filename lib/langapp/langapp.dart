@@ -35,6 +35,7 @@ class CourseGrid extends StatelessWidget {
       shrinkWrap: true,
       crossAxisCount: 2,
       children: _GridItem.examples.map(_GridCard.new).toList(),
+      
     );
   }
 }
